@@ -104,7 +104,7 @@ func resourceIBMKmsKeyRingCreate(d *schema.ResourceData, meta interface{}) error
 
 	err = kpAPI.CreateKeyRing(context.Background(), keyRingID)
 	if err != nil {
-		return fmt.Errorf("[ERROR] Error while creating key ring : %s", err)
+		return fmt.Errorf("[ERROR] Error while creating key ring (URL=%s): %s", URL, err)
 	}
 	var keyRing string
 	keyRings, err2 := kpAPI.GetKeyRings(context.Background())
