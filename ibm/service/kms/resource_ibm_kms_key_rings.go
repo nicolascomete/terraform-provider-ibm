@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 	"strings"
-	"net/http"
-	"time"
+	//"net/http"
+	//"time"
 
 	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/conns"
 	"github.com/IBM-Cloud/terraform-provider-ibm/ibm/validate"
@@ -105,7 +105,7 @@ func resourceIBMKmsKeyRingCreate(d *schema.ResourceData, meta interface{}) error
 	kpAPI.Config.InstanceID = instanceID
 
 	// Test fix
-	tmpUrl := fmt.Sprintf("%s/api/v2/key_rings/%s", URL, keyRingID)
+	/*tmpUrl := fmt.Sprintf("%s/api/v2/key_rings/%s", URL, keyRingID)
 	tmpReq, tmpErr := http.NewRequest(http.MethodPost, tmpUrl, nil)
 	if tmpErr != nil {
 		return fmt.Errorf("FIX: could not create request: %s", tmpErr)
@@ -123,7 +123,7 @@ func resourceIBMKmsKeyRingCreate(d *schema.ResourceData, meta interface{}) error
 	_, tmpErr2 := tmpClient.Do(tmpReq)
 	if tmpErr2 != nil {
 		return fmt.Errorf("FIX: could not execute request (%s): %s", tmpUrl, tmpErr2)
- 	}
+ 	}*/
 	// Test fix
 
 	err = kpAPI.CreateKeyRing(context.Background(), keyRingID)

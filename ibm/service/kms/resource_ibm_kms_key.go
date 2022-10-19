@@ -455,8 +455,8 @@ func KmsEndpointURL(kpAPI *kp.Client, endpointType string, extensions map[string
 	}
 	endpointURL := fmt.Sprintf("%s/api/v2/keys", exturl.(string))
 
-	url1 := conns.EnvFallBack([]string{"IBMCLOUD_KP_API_ENDPOINT"}, endpointURL)
-	u, err := url.Parse(url1)
+	//url1 := conns.EnvFallBack([]string{"IBMCLOUD_KP_API_ENDPOINT"}, endpointURL)
+	u, err := url.Parse(endpointURL)
 	if err != nil {
 		return nil, fmt.Errorf("[ERROR] Error Parsing KMS EndpointURL")
 	}
