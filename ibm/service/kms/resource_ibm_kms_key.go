@@ -446,7 +446,7 @@ func resourceIBMKmsKeyExists(d *schema.ResourceData, meta interface{}) (bool, er
 
 }
 
-//Construct KMS URL
+// Construct KMS URL
 func KmsEndpointURL(kpAPI *kp.Client, endpointType string, extensions map[string]interface{}) (*url.URL, error) {
 
 	exturl := extensions["endpoints"].(map[string]interface{})["public"]
@@ -455,8 +455,11 @@ func KmsEndpointURL(kpAPI *kp.Client, endpointType string, extensions map[string
 	}
 	endpointURL := fmt.Sprintf("%s/api/v2/keys", exturl.(string))
 
-	//url1 := conns.EnvFallBack([]string{"IBMCLOUD_KP_API_ENDPOINT"}, endpointURL)
-	u, err := url.Parse(endpointURL)
+	url1 := conns.EnvFallBack([]string{"IBMCLOUD_KP_API_ENDPOINT"}, endpointURL)
+
+	return nil, fmt.Errorf("Valid: %s | Invalid: %s", endpointURL, url1)
+
+	u, err := url.Parse(url1)
 	if err != nil {
 		return nil, fmt.Errorf("[ERROR] Error Parsing KMS EndpointURL")
 	}
